@@ -143,7 +143,10 @@ module.exports = function(api, opts, env) {
       // Turn on legacy decorators for TypeScript files
       [
         require('@babel/plugin-proposal-decorators').default,
-        false,
+        !isTypeScriptEnabled && {
+          legacy: false,
+          decoratorsBeforeExport: true,
+        },
       ],
       // class { handleClick = () => { } }
       // Enable loose mode to use assignment instead of defineProperty
